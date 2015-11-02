@@ -3,6 +3,12 @@ ruby '2.2.3'
 
 gem 'rails', '4.2.4'
 gem 'pg'
+gem 'puma'
+
+gem 'rails_12factor'
+gem 'pry-rails'
+
+# assets
 
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
@@ -13,19 +19,23 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'high_voltage'
+
+gem 'simple_form'
+
+# api
 
 gem 'jbuilder', '~> 2.0'
 
-gem 'devise'
-gem 'high_voltage'
-gem 'pundit'
-gem 'simple_form'
-gem 'upmin-admin'
+# auth
+
+gem 'devise' # authentication
+gem 'pundit' # authorization
+gem 'upmin-admin' # basic admin panel
 
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'foreman'
 
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -50,10 +60,11 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'pry-rails'
+  gem 'awesome_print'
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -61,9 +72,4 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
-end
-
-group :production do
-  gem 'puma'
-  gem 'rails_12factor'
 end
