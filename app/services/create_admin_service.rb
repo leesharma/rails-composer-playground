@@ -1,10 +1,21 @@
+# Creates a default admin account when called
 class CreateAdminService
   def call
-    user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
-        user.password = Rails.application.secrets.admin_password
-        user.password_confirmation = Rails.application.secrets.admin_password
-        user.confirm!
-        user.admin!
-      end
+    User.find_or_create_by!(email: admin_email) do |user|
+      user.password = admin_password
+      user.password_confirmation = admin_password
+      user.confirm!
+      user.admin!
+    end
+  end
+
+  private
+
+  def admin_email
+    Rails.application.secrets.admin_email
+  end
+
+  def admin_password
+    Rails.application.secrets.admin_password
   end
 end
