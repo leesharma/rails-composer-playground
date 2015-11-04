@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+  - "2.2.3"
+
+cache: bundler
+bundler_args: --without production
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: cRBb01iy6D38JUdJVvvDsA3F9zc4VfXj03ji3464tTGfjZeyxgDJogNvdAUOF1dkf5JdjsLyEQtsw4mDbBdPpcmAwWGFwAI043TS+rB41E6Wyy+5R3DFTIzzdF8/XiHCZ1goEFTDGdYkibRIFl4TsIPjUhEaE5zRb9/xIqtYs+YMJXOiscbbqDNYzlpYskteOPCnSGgngD+IcGnDmgDLY6GmrYyRtVneZmbhEX7UXuGC6Ica7wx06gTaV9Taar6z0i/GXSvpagJ8J5qrmChKUlUqV6TfjFL3rDg0yMrSg300auc0G01G/EyFC5t3GK5fHFd4Y8ElRDIJOelEWc6gX4FcOV/5Kc/9gGrec0AFQyyPwawcG/Vk29B2TBnTkbTGAlMdfhlZNgp5DNrXyyBBblHvMssYTnx3HZ3sdZ3LLcK/0v5VlD2RvYNu0qjwO1azBNUDt4IDgOJxlxDcRhsORCyokb/KDjveK1b7lN0G/YFC/mzVBRE7xuRaAktm0t6fIUrK56lxtLApb+KEIR81hOABNV3kb8vyXWtLaEcec+jN0dJmy16+SNN7MkS0bPa3QKPfR1wNCVK7ivZlox1u93j0i6aTVlt/YxP7/8HIVg9LL4S3gJ6fHELpOSUlJu30coaEX3+8mgaYr9mut1NFeQCApf87pbkpXcyfworJyyA=
+  app: warm-spire-3694
+  on:
+    repo: leesharma/rails-composer-playground
+  run:
+    - "rake db:migrate"
+    - restart
+
+addons:
+  postgresql: "9.4"
+
+before_script:
+  - psql -c 'create database rails_composer_custom_test;' -U postgres
