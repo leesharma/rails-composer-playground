@@ -43,7 +43,8 @@ end
 # zeus: false                          # enables zeus gem.
 # CLI: 'rails server'                  # customizes runner command. Omits all options except `pid_file`!
 
-guard 'rails' do
+
+guard 'rails', server: 'puma' do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end
@@ -139,4 +140,15 @@ guard 'livereload' do
   watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
+end
+
+### Guard::Sidekiq
+#  available options:
+#  - :verbose
+#  - :queue (defaults to "default") can be an array
+#  - :concurrency (defaults to 1)
+#  - :timeout
+#  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
+guard 'sidekiq', queue: ['mailers', 'default'], environment: 'development' do
+  watch(%r{^workers/(.+)\.rb$})
 end

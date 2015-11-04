@@ -4,8 +4,9 @@ ruby '2.2.3'
 gem 'rails', '4.2.4'
 gem 'pg'
 gem 'puma'
+gem 'sidekiq'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'pry-rails'
 
 # assets
@@ -30,6 +31,7 @@ gem 'jbuilder', '~> 2.0'
 # auth
 
 gem 'devise' # authentication
+gem 'devise-async' # for queued mailers
 gem 'pundit' # authorization
 gem 'upmin-admin' # basic admin panel
 
@@ -48,6 +50,7 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload', '~> 2.4', require: false
+  gem 'guard-sidekiq'
 
   gem 'quiet_assets'
   gem 'bullet'
