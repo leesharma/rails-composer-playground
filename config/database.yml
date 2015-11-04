@@ -3,12 +3,12 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: <%= ENV['PG_USERNAME'] %>
-  password: <%= ENV['PG_PASSWORD'] %>
 
 development:
   <<: *default
   database: rails_composer_custom_development
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -16,7 +16,9 @@ development:
 test:
   <<: *default
   database: rails_composer_custom_test
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
 
 production:
   <<: *default
-  database: rails_composer_custom
+  url: <%= ENV['DATABASE_URL'] %>
